@@ -1,9 +1,31 @@
 Rails.application.routes.draw do
   # get 'registrations/create' 
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {registrations: "registrations", sessions: "sessions/sessions"}
   # get 'pages/show', constraints: {subdomain: /.+/}
-  root 'pages#index'
+  
+
+  get 'help' => 'pages#help'
+
+  get "about" => 'pages#about'
+
+  get "contact" => 'pages#contact'
+
+  get 'page_not_found' => 'pages#page_not_found'
+
+  get 'give_email' => 'pages#give_email'
+
+  get 'show_hospitals' => 'pages#show_hospitals'
+
+  # authenticated :user do
+  #   root "sessions#create"
+  # end
+
+  root 'pages#home'
+
+  #resources :admin
+
+  get 'admin_dashboard' => 'admins#dashboard'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -39,6 +39,10 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  MyApp::Application.configure do
+    config.action_dispatch.tld_length = 0
+  end
+
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
 

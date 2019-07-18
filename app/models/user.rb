@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   belongs_to :hospital
 
   accepts_nested_attributes_for :hospital
+
+  def add_hospital(name, subdomain)
+    build_hospital(hospital_name:name, sub_domain:subdomain)
+  end
+
 end

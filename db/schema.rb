@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190715190204) do
+ActiveRecord::Schema.define(version: 20190717075944) do
 
   create_table "hospitals", force: :cascade do |t|
     t.string   "hospital_name", limit: 255
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20190715190204) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",                   limit: 255
+    t.string   "role",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
