@@ -9,6 +9,7 @@ $gray-darker: eaeeea;
 
 /* universal */
 
+
 body {
   padding-top: 60px;
 }
@@ -46,7 +47,11 @@ h2 {
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
-  font-weight: normal;
+  font-weight: bold;
+}
+
+.h2-special {
+  margin-bottom: 10px;
 }
 
 p {
@@ -99,3 +104,129 @@ footer {
   }
 
 }
+
+.form-tag-size {
+  padding-top: 6px;
+}
+
+.email-only-div {
+  margin-top: 40px;
+  height: 320px;
+  width: 600px;
+  padding-top: 40px;
+}
+
+.signin-only-div {
+  margin-top: 40px;
+  height: 430px;
+  width: 600px;
+  padding-top: 40px;
+}
+
+.horizontal-line-color {
+  border-top: 1px solid gray;
+}
+
+#welcome-to-site {
+  font-family: Calibri;
+}
+
+div {
+  font-family: Calibri;
+}
+
+#flash-messages {
+  margin-top: 30px
+}
+
+.remember-me-checkbox {
+  margin-top: 5px;
+}
+
+.each-hospital-div {
+  height:80px;
+  margin-top: 15px;
+  border: 1px solid SkyBlue;
+
+  &:hover {
+    border-color: LightCoral;
+    box-shadow: 7px 7px LightGrey;
+  }
+}
+
+a:link { 
+    text-decoration:none; 
+}
+
+
+.icon-size {
+  height: 70px;
+  width: 60px;
+  padding-top: 10px; 
+}
+
+.vertical { 
+  border-left: 1px solid gray; 
+  height: 60px;
+  margin-top:10px;
+}
+
+.hospital-name-style {
+  padding-top: 25px;
+}
+
+.hospitals-only-div {
+  flex-direction: column;
+  width: 600px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 1.1em;
+
+}
+
+.arrow-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.arrow-div {
+  padding-top: 20px;
+  padding-left: 40px;
+  margin-left: 35px;
+}
+
+.full-screen-bg {
+  background-image: url('/images/hos-bg.jpg');
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('hos-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+.signup-form {
+  margin-left: -20px;
+  padding-right: 60px;
+}
+
+.signup-bg {
+  margin-top:-35px;
+}
+
+.signup-img {
+  height: 657px;
+  width: 657px;
+}
+
+
+
+

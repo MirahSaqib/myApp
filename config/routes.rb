@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   get 'give_email' => 'pages#give_email'
 
-  get 'show_hospitals' => 'pages#show_hospitals'
+  post 'show_hospitals' => 'pages#show_hospitals'
+
+  post 'update_subdomain' => 'pages#update_subdomain'
 
   # authenticated :user do
   #   root "sessions#create"

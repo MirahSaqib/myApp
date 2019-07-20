@@ -1,7 +1,7 @@
 class Hospital < ActiveRecord::Base
-  has_many :users
+  has_many :users, dependent: :destroy
 
-  validates_uniqueness_of [:hospital_name, :sub_domain]
+  validates_uniqueness_of %i[hospital_name sub_domain]
 
   def self.current_id=(id)
     Thread.current[:hospital_id] = id

@@ -1,16 +1,17 @@
-<div class="jumbotron">
-	<h1>Welcome to HMS</h1>
-	<div class="center">
-	
-		<%= form_tag show_hospitals_path, method: 'post' do  %>
-			<div class="form-group form-inline">
-			    <%= label_tag :email, "Email", required: true%>
-			    <%= email_field_tag :email, params[:email], class: 'form-control col-sm-7', required: true %>
+<div class="d-flex justify-content-center">
+	<div class="center border border-info rounded email-only-div">
+		<h1 id="welcome-to-site">Welcome to HMS</h1>
+		<div class="row justify-content-center"><div class="col-sm-8"><hr class="horizontal-line-color"></div></div>
+		<h2>Sign in</h2>
+		<%= form_tag show_hospitals_path, method: 'post' do %>
+			<div class="form-row form-group justify-content-center">
+			    <%= label_tag :email, "Email", class: 'col-sm-1 form-tag-size'%>
+			    <div class='col-sm-1'></div>
+			    <%= email_field_tag :email, params[:email], class: 'col-sm-6 form-control', required: true %>
 			</div>
-			<div class="form-group">
-				<%= submit_tag "Continue", class: 'btn btn-info' %>
+			<div class="form-row form-group justify-content-center">
+				<%= submit_tag "Continue", class: 'btn btn-info col-sm-8' %>
 			</div>
-		
 		<%end %>
 	</div>
 </div>

@@ -8,8 +8,21 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :hospital
 
+  validates :email, uniqueness: { scope: :hospital_id }
+
+  validates_presence_of   :email
+  # validates_uniqueness_of :email, allow_blank: true
+  validates_format_of     :email, with: email_regexp, allow_blank: true
+
   def add_hospital(name, subdomain)
-    build_hospital(hospital_name:name, sub_domain:subdomain)
+    build_hospital(hospital_name: name, sub_domain: subdomain)
   end
 
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
 end

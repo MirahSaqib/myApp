@@ -1,3 +1,22 @@
-<div class="center jumbotron">
-	<h1>LIST OF SUBDOMAINS</h1>
+<div class="d-flex justify-content-center">
+	<div class="center border border-info rounded flex hospitals-only-div">
+		<h1 id="welcome-to-site">Your Hospitals</h1>
+		<div class="row justify-content-center"><div class="col-sm-8"><hr class="horizontal-line-color"></div></div>
+		<h2 class="h2-special">Please select one to continue</h2>
+		<% @hospitals.each do |hospital| %>
+			<%=link_to new_user_session_url(subdomain: hospital.sub_domain) do %>
+				<div class="row justify-content-center">
+					<div class="col-sm-9">
+						<div class="row rounded each-hospital-div">
+							<div class="col-sm-3"><%=image_tag "hospital.png", class: "img-fluid icon-size" %></div>
+							<div class="vertical"></div>
+							<div class="col-sm-4 text-left hospital-name-style text-secondary"><%= hospital.hospital_name %></div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-3 arrow-div"><%=image_tag "right-arrow.png", class: "arrow-icon" %></div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
 </div>

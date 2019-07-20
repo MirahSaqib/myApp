@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190717075944) do
+ActiveRecord::Schema.define(version: 20190719191827) do
 
   create_table "hospitals", force: :cascade do |t|
     t.string   "hospital_name", limit: 255
@@ -46,8 +46,10 @@ ActiveRecord::Schema.define(version: 20190717075944) do
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email", "hospital_id"], name: "index_users_on_email_and_hospital_id", unique: true, using: :btree
+  add_index "users", ["hospital_id"], name: "fk_rails_2609e3a10c", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "users", "hospitals"
 end
