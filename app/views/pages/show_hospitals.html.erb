@@ -4,7 +4,7 @@
 		<div class="row justify-content-center"><div class="col-sm-8"><hr class="horizontal-line-color"></div></div>
 		<h2 class="h2-special">Please select one to continue</h2>
 		<% @hospitals.each do |hospital| %>
-			<%=link_to new_user_session_url(subdomain: hospital.sub_domain) do %>
+			<%=link_to new_admin_session_url(subdomain: hospital.sub_domain) do %>
 				<div class="row justify-content-center">
 					<div class="col-sm-9">
 						<div class="row rounded each-hospital-div">

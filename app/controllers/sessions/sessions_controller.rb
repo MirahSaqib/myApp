@@ -12,21 +12,21 @@ class Sessions::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    @user = User.where(email: (params[:user][:email]), hospital_id: current_hospital.id)
+    @admin = User.where(email: (params[:admin][:email]), hospital_id: current_hospital.id)
 
     if !session[:user_id].nil?
       flash[:info] = 'You are already signed in!'
       redirect_to admin_dashboard_url(subdomain: @hospital.sub_domain)
-    elsif current_hospital.id == @user.first.hospital.id
+    elsif current_hospital.id == @admin.first.hospital.id
       self.resource = warden.authenticate!(auth_options)
       flash[:success] = 'Signed in Successfully!'
       sign_in(resource_name, resource)
-      session[:user_id] = @user.id
+      session[:user_id] = @admin.id
       session[:hospital_id] = current_hospital.id
       yield resource if block_given?
       redirect_to admin_dashboard_path
     else
-      redirect_to new_user_session_url, danger: 'You do not have an account for this application!'
+      redirect_to new_admin_session_url, danger: 'You do not have an account for this application!'
     end
   end
 

@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  # get 'registrations/create' 
+  # get 'registrations/create'
 
-  devise_for :users, :controllers => {registrations: "registrations", sessions: "sessions/sessions"}
+  devise_for :admins, controllers: { registrations: 'registrations', sessions: 'sessions/sessions' }
   # get 'pages/show', constraints: {subdomain: /.+/}
-  
+  devise_for :doctors
+  devise_for :patients
 
   get 'help' => 'pages#help'
 
-  get "about" => 'pages#about'
+  get 'about' => 'pages#about'
 
-  get "contact" => 'pages#contact'
+  get 'contact' => 'pages#contact'
 
   get 'page_not_found' => 'pages#page_not_found'
 
@@ -24,8 +25,6 @@ Rails.application.routes.draw do
   # end
 
   root 'pages#home'
-
-  #resources :admin
 
   get 'admin_dashboard' => 'admins#dashboard'
 

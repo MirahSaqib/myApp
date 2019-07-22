@@ -2,9 +2,14 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-       :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
+         :recoverable, :rememberable, :trackable,
+         :validatable, :confirmable, :lockable
 
   belongs_to :hospital
+
+  # scope :admins, -> { where(role: 'Admin') }
+  # scope :doctors, -> { where(role: 'Doctor') }
+  # scope :patients, -> { where(role: 'Patient') }
 
   accepts_nested_attributes_for :hospital
 
@@ -13,10 +18,6 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
   # validates_uniqueness_of :email, allow_blank: true
   validates_format_of     :email, with: email_regexp, allow_blank: true
-
-  def add_hospital(name, subdomain)
-    build_hospital(hospital_name: name, sub_domain: subdomain)
-  end
 
   def email_required?
     false

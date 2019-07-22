@@ -12,5 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require update_subdomain.js
 //= require_tree .

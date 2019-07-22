@@ -3,9 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # devise_group :user, contains: %i[admin doctor patient]
+
   add_flash_types :danger, :warning, :info, :success
 
-  before_action :configure_permitted_parameters, if: :devise_controller? 
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound do
     redirect_to page_not_found_url(subdomain: false)
@@ -36,11 +38,11 @@ class ApplicationController < ActionController::Base
     Hospital.current_id = nil
   end
 
-  def authenticate_user!
-    if user_signed_in?
+  def authenticate_admin!
+    if admin_signed_in?
       super
     else
       redirect_to page_not_found_path
     end
-  end  
+  end
 end
