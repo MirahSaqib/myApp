@@ -227,6 +227,46 @@ a:link {
   width: 657px;
 }
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
 
+.show {display: block;}
 
+.fa-minus-square {
+  color: Crimson;
+}
 
+.fa-plus-square {
+  color: ForestGreen;
+}
+
+.medicine-view-by-dropdown {
+  width: 150px;
+}
+
+.simple-heading {
+  font-size: 2.5em;
+}
+
+.view-by {
+  padding-top: 5px;
+}
+
+.details-box {
+  width: 606px;
+  background-color: LightGrey;
+  height: 150px;
+  padding-top: 10px;
+  padding-left: 30px;
+}
+
+.med-details {
+  padding-top: 15px;
+}

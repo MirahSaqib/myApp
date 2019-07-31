@@ -1,0 +1,33 @@
+<div>
+  <%= form_for @medicine do |f| %>
+    <div class="form-group">
+      <%= f.label :medicine_name %>
+      <%= f.text_field :name, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <%= f.label :sale_price %>
+        <%= f.text_field :sale_price, class: 'form-control', required: true %>
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="form-group col-sm-3">
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity, class: 'form-control', readonly: true, value: "0" %>
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="form-group col-sm-3">
+        <%= f.label :category %>
+        <%= f.text_field :category, class: 'form-control', required: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Submit", class: 'btn btn-success form-control' %>
+    </div>
+  <% end %>
+</div>

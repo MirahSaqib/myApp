@@ -1,32 +1,26 @@
 class Sessions::SessionsController < Devise::SessionsController
-  # before_filter :configure_sign_in_params, only: [:create]
-
-  # GET /resource/sign_in
-  # def new
-  #   # if(current_hospital.nil?)
-  #   #   redirect_to root_url(subdomain: false)
-  #   # else
-  #   #   super
-  #   # end
-  # end
 
   # POST /resource/sign_in
   def create
-    @admin = User.where(email: (params[:admin][:email]), hospital_id: current_hospital.id)
-
-    if !session[:user_id].nil?
-      flash[:info] = 'You are already signed in!'
-      redirect_to admin_dashboard_url(subdomain: @hospital.sub_domain)
-    elsif current_hospital.id == @admin.first.hospital.id
-      self.resource = warden.authenticate!(auth_options)
-      flash[:success] = 'Signed in Successfully!'
-      sign_in(resource_name, resource)
-      session[:user_id] = @admin.id
-      session[:hospital_id] = current_hospital.id
-      yield resource if block_given?
-      redirect_to admin_dashboard_path
+    admin = User.where(email: (params[:admin][:email]), hospital_id: @current_hospital.id)
+    if !admin.first.nil? && admin.first.valid_password?(params[:admin][:password])
+      if !session[:user_id].nil?
+        flash[:info] = t('sessions.already_signed_in')
+        redirect_to admin_dashboard_url(subdomain: @current_hospital.sub_domain)
+      elsif @current_hospital.id == admin.first.hospital.id
+        flash[:success] = t('sessions.successful_sign_in')
+        clean_up_passwords(admin.first)
+        sign_in(resource_name, admin.first)
+        session[:user_id] = admin.first.id
+        session[:hospital_id] = @current_hospital.id
+        yield resource if block_given?
+        redirect_to admin_dashboard_path
+      else
+        redirect_to new_admin_session_url, danger: t('sessions.account_not_found')
+      end
     else
-      redirect_to new_admin_session_url, danger: 'You do not have an account for this application!'
+      flash[:danger] = t('sessions.incorrect_email_or_password')
+      redirect_to new_admin_session_path
     end
   end
 
@@ -40,16 +34,4 @@ class Sessions::SessionsController < Devise::SessionsController
     yield if block_given?
     respond_to_on_destroy
   end
-
-  # protected
-
-  # You can put the params you want to permit in the empty array.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.for(:sign_in) << :attribute
-  # end
-
-  # def after_sign_in_path_for(resource)
-  #   #binding.pry
-  #   #user_session_url(subdomain: @hospital.sub_domain)
-  # end
 end

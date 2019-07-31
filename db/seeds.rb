@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+m1 = Medicine.create(name: "Augmentin", sale_price: 400, quantity: 40, hospital_id: 78)
+m1 = Medicine.create(name: "Panadol", sale_price: 20, quantity: 20, hospital_id: 78)
+m1 = Medicine.create(name: "SurbexZ", sale_price: 200, quantity: 8, hospital_id: 78)

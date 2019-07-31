@@ -1,0 +1,9 @@
+$('#medicine-list').empty();
+var type = $('#which-medicines').val();
+if(type == "All") {
+	$('#medicine-list').append("<%= j render 'medicine_index_table', locals: { medicines: @medicines } %>");
+} else if (type == "Not Expired") {
+	$('#medicine-list').append("<%= j render 'medicine_index_table', locals: { medicines: @medicines.not_expired } %>");
+} else if (type == "Expired") {
+	$('#medicine-list').append("<%= j render 'medicine_index_table', locals: { medicines: @medicines.expired } %>");
+}

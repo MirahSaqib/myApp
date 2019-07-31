@@ -20,13 +20,22 @@ Rails.application.routes.draw do
 
   post 'update_subdomain' => 'pages#update_subdomain'
 
-  # authenticated :user do
-  #   root "sessions#create"
-  # end
+  post 'get_user_medicines' => 'pages#get_user_medicines'
+
+  post 'add_medicine' => 'prescriptions#on_add_medicine'
+
+  post 'delete_medicine' => 'prescriptions#on_delete_medicine'
 
   root 'pages#home'
 
   get 'admin_dashboard' => 'admins#dashboard'
+
+  resources :prescriptions
+  resources :medicines do
+    member do
+      get 'expire'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

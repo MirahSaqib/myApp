@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   # devise_group :user, contains: %i[admin doctor patient]
 
-  add_flash_types :danger, :warning, :info, :success
+  add_flash_types :danger, :warning, :info, :success, :alert, :notice
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -16,17 +16,17 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    # devise_parameter_sanitizer.for(:user) { |u| u.permit(:name, :role, :email, :password, hospital_attributes: [:hospital_name, :sub_domain]) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :role, :email, :password, hospital_attributes: [:hospital_name, :sub_domain]) }
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :type, :role, :password, hospital_attributes: [:hospital_name, :sub_domain]) }
+    devise_parameter_sanitizer.for(:account_update, &:permit!)
+    devise_parameter_sanitizer.for(:sign_up, &:permit!)
   end
 
   around_filter :scope_current_hospital
+  before_filter :scope_sign_up
 
   private
 
   def current_hospital
-    Hospital.find_by_sub_domain!(request.subdomain) unless request.subdomain.empty?
+    @current_hospital ||= Hospital.find_by!(sub_domain: request.subdomain) unless request.subdomain.empty?
   end
 
   helper_method :current_hospital
@@ -43,6 +43,14 @@ class ApplicationController < ActionController::Base
       super
     else
       redirect_to page_not_found_path
+    end
+  end
+
+  def scope_sign_up
+    unless request.subdomain.empty?
+      if request.url.eql?(new_admin_registration_url(subdomain: request.subdomain))
+        redirect_to new_admin_registration_url(subdomain: false)
+      end
     end
   end
 end

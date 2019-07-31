@@ -1,0 +1,75 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'search_medicines' %>
+<% end %>
+
+<div>
+  <%= form_for @prescription do |f| %>
+    <div class="form-group">
+      <%= f.label :hospital_id %>
+      <%= f.text_field :hospital_id, class: 'form-control', readonly: true, value: 1 %>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-sm-4">
+        <%= f.label :doctor_name %>
+        <%= f.text_field :doctor_name, class: 'form-control', readonly: true, value: "Hello" %>
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="form-group col-sm-4">
+        <%= f.label :patient_name %>
+        <%= f.text_field :patient_name, class: 'form-control', readonly: true, value: "Bye" %>
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="form-group col-sm-2">
+        <%= f.label :appointment_id %>
+        <%= f.text_field :appointment_id, class: 'form-control', readonly: true, value: 1 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :disease %>
+      <%= f.text_field :disease, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description%>
+      <%= f.text_field :description, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :medicine_tokens, "Medicines" %>
+      <%= f.text_field :medicine_tokens, data: { load: @prescription.medicines },class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody id="med-table">
+          <% @prescription.prescription_medicines.each do |pres_meds| %>
+            <tr id= <%=pres_meds.medicine_id%> >
+              <th scope="row"><%=pres_meds.medicine_id%></th>
+              <td><%=pres_meds.medicine.name%></td>
+              <td id=<%=pres_meds.medicine.name%>-qty>
+                <%=number_field_tag "med_quantity", params[:med_quantity], min: 1, max: pres_meds.medicine.quantity, value: pres_meds.quantity%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Submit", class: 'btn btn-success form-control' %>
+    </div>
+  <% end %>
+</div>

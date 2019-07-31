@@ -42,4 +42,12 @@ class PagesController < ApplicationController
       format.js
     end
   end
+
+  def get_user_medicines
+    @medicines=Hospital.where("hospital_name like ?", "%#{params[:medicine_name]}%")
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 end

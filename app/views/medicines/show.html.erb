@@ -1,0 +1,29 @@
+<div class="row">
+  <h1 class="simple-heading text-left col-4"><%=@medicine.name%></h1>
+  <div class="col-1"></div>
+  <div class="col-4">
+    <%= link_to edit_medicine_path(@medicine), class: "btn btn-info", 'data-toggle': 'tooltip', title: 'Edit' do %>
+        <i class="fa fa-edit" aria-hidden="true"></i>
+      <% end %>
+    <%= link_to medicine_path(@medicine), method: :delete, class: "btn btn-danger", 'data-toggle': 'tooltip', title: 'Delete' do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+    <%= link_to expire_medicine_path(@medicine), class: "btn btn-warning", 'data-toggle': 'tooltip', title: 'Expire' do %>
+        <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+      <% end %>
+  </div>
+</div>
+<div class="details-box rounded">
+  <div class="row med-details">
+    <div class="col-3"><b>Category:</b></div>
+    <div class="col-2"><%=@medicine.category%></div>
+  </div>
+  <div class="row med-details">
+    <div class="col-3"><b>Sale Price:</b></div>
+    <div class="col-2"><%=@medicine.sale_price%></div>
+  </div>
+  <div class="row med-details">
+    <div class="col-3"><b>Quantity:</b></div>
+    <div class="col-2"><%=@medicine.quantity%></div>
+  </div>
+</div>

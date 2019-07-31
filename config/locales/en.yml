@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+
+  medicines:
+    created: 'Medicine created successfully!'
+    not_created: 'Medicine could not be created!'
+    updated: 'Medicine updated successfully!'
+    not_updated: 'Medicine could not be updated!'
+    deleted: 'Medicine deleted successfully!'
+    expired: 'Medicine expired successfully!'

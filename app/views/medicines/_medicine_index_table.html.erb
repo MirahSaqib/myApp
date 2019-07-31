@@ -1,0 +1,13 @@
+<% locals[:medicines].each do |medicine| %>
+  <tr>
+    <th scope="row"><%=medicine.id%></th>
+    <td><%=medicine.name%></td>
+    <td><%=medicine.category%></td>
+    <td><%=medicine.sale_price%></td>
+    <td>
+      <%= link_to medicine_path(medicine.id), class: "btn btn-info" , 'data-toggle': 'tooltip', title: 'View Details' do %>
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

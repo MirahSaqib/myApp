@@ -1,0 +1,20 @@
+<h1 class="text-left simple-heading">Medicines</h1>
+<div class="row">
+  <div class="col-sm-1 view-by">View by:</div>
+  <%=select_tag "View Medicines", options_for_select(['All', 'Not Expired', 'Expired']), id: "which-medicines", class: "medicine-view-by-dropdown form-control", data: { remote: true, url: medicines_path } %>
+</div>
+<div class="row">&nbsp</div>
+<table class="table table-striped">
+  <thead class="bg-info">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Sale Price</th>
+      <th scope="col">View Details</th>
+    </tr>
+  </thead>
+  <tbody id="medicine-list">
+    <%= render 'medicine_index_table', locals: { medicines: @medicines } %>
+  </tbody>
+</table>

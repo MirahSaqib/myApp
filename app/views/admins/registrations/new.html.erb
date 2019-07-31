@@ -56,7 +56,7 @@
 <script>
   $(document).ready(function(){
     $('#hospital_name').keyup(function() {
-        
+        $('#hospital_name').css('display', 'none');
         $.ajax({
            url: '<%= update_subdomain_url %>',
            method: "POST",
